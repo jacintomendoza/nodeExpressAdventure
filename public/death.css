@@ -1,0 +1,18 @@
+@font-face {
+    font-family: spooky;
+    src: url(/MISTV___.TTF);
+}
+
+body {
+    background-color: rgb(191, 65, 65);
+}
+
+img {
+    width: 400px;
+}
+
+.info {
+    font-family: spooky;
+    font-size: 50px;
+}
+
