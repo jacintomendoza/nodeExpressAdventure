@@ -22,7 +22,7 @@ app.get("/chests", (req,res) => {
     res.render("chests");
 })
 
-app.get("accessories", (req,res) => {
+app.get("/accessories", (req,res) => {
     res.render("accessories");
 })
 

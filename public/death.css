@@ -9,6 +9,7 @@ body {
 
 img {
     width: 400px;
+    border-radius: 30px;
 }
 
 .info {
