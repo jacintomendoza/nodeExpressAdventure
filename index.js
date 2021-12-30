@@ -1,7 +1,7 @@
 const express = require("express");
 // node 14 or higher: // import * as express from "express";
 const app = express();
-const port = "3333";
+const port = process.env.PORT || 3333;
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '../assets/img'));
