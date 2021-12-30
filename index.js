@@ -26,6 +26,10 @@ app.get("/accessories", (req,res) => {
     res.render("accessories");
 })
 
+app.get("/cities", (req,res) => {
+    res.render("cities");
+})
+
 app.get("/winner", (req,res) => {
     res.render("winner");
 })

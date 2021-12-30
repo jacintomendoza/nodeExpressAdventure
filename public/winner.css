@@ -1,3 +1,7 @@
+.html {
+    overflow: scroll;
+}
+
 .message {
     display: flex;
     justify-content: center;

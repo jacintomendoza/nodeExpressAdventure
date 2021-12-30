@@ -10,6 +10,7 @@ body {
 img {
     width: 400px;
     border-radius: 30px;
+    box-shadow: 1px 1px 1px 1px black;
 }
 
 .info {
