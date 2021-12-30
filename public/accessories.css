@@ -13,9 +13,12 @@ img {
     transition: transform .5s ease;
 }
 
-a {
+.pictures {
     background-color: rgb(241, 140, 140);
-    padding: 50px;
+    padding: 0px;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
 }
 
 img:hover {

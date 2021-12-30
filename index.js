@@ -26,6 +26,10 @@ app.get("/accessories", (req,res) => {
     res.render("accessories");
 })
 
+app.get("/winner", (req,res) => {
+    res.render("winner");
+})
+
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 })
