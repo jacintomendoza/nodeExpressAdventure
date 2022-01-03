@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/mastersword.png">
+    <link href="/index.css" rel="stylesheet" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="title">Welcome to the beginning of <u>Common Sense!</u><%= punctuation %> <%= my_user %> </h1>
+    <br><br>
+    <div class="login">
+        <h2>Please Login</h2>
+        <form action="/signup" method="POST">
+            <p><input type="text" name="username" placeholder="Enter your username"></p>
+            <p><input type="password" name="password" placeholder="Enter your password"></p>
+    
+            <input type="submit" value="sign in!" />
+
+            <% if (invalid_login) { %>
+            <div class="error">
+                Invalid Login!!!
+            </div>
+            <% } %>
+            
+        </form>
+    </div>
+
+    <div class="accounts">
+        {"name": "Josh", "password": "123"},<br>
+        {"name": "Josef", "password": "123"},<br>
+        {"name": "Jessica", "password": "123"}]}
+    </div>
+</body>
+</html>

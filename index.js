@@ -1,17 +1,78 @@
+const { query } = require("express");
 const express = require("express");
+// const querystring = requre("querystring");
 // node 14 or higher: // import * as express from "express";
 const app = express();
 const port = process.env.PORT || 3333;
+var session = require('express-session');
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '../assets/img'));
+
+// Instead of using body parser
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+app.use(session({
+    secret: 'random string qwfegret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }))
 
 // with npm install ejs:
 app.set("view engine", "ejs");
 
 app.get("/", (req,res) => {
-    res.render("caves");
+    let user = "";
+    let punctuation = "";
+    let invalid_login = false;
+
+    invalid_login = req.query.reason || null; //params.get("reason") || null;
+
+    if (req.session && req.session.username){
+        user = req.session.username;
+        punctuation = ",";
+    }
+
+    res.render("index", {my_user: user, punctuation: punctuation, invalid_login: invalid_login});
 })
+
+app.post('/signup', (req, res) => {
+    const valid_users = [
+        {"name": "Josh", "password": "123"},
+        {"name": "Josef", "password": "123"},
+        {"name": "Jessica", "password": "123"}];
+
+    const user = req.body.username;
+    const pass = req.body.password;
+
+    const found_user = valid_users.find(usr => 
+        usr.name == user && usr.password == pass
+    );
+    
+    if (found_user){
+        req.session.username = user;
+        res.redirect("/caves");
+    }
+    else{
+        req.session.destroy(()=>{
+
+        })
+    res.redirect("/?reason=invalid_user");
+    }
+})
+
+app.get("/caves", (req,res) => {
+    if (req.session && req.session.username) {
+        res.render("caves", {user: req.session.username});
+        // res.render("/caves");
+    }
+    else {
+        req.session.destroy(() => {
+            // console.log("Bad");
+        });
+    }})
 
 app.get("/death/:deathname", (req,res) => {
     const deathtype = req.params["deathname"];
@@ -37,11 +98,3 @@ app.get("/winner", (req,res) => {
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 })
-
-// app.get("/bird/:birdname", (req,res) => {
-//     const name = req.params["birdname"];
-
-//     const raptors = ["hawk", "falcon"];
-//     res.render("bird", {birdname: name});
-
-// })
