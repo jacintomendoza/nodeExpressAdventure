@@ -64,35 +64,40 @@ app.post('/signup', (req, res) => {
 })
 
 app.get("/caves", (req,res) => {
-    if (req.session && req.session.username) {
-        res.render("caves", {user: req.session.username});
-        // res.render("/caves");
-    }
-    else {
-        req.session.destroy(() => {
-            // console.log("Bad");
-        });
-    }})
+    if (req.session && req.session.username) {res.render("caves", {user: req.session.username});}
+    else {req.session.destroy(() => {});
+}})
 
 app.get("/death/:deathname", (req,res) => {
     const deathtype = req.params["deathname"];
-    res.render("death", {deathname: deathtype});
+
+    if (req.session && req.session.username) {res.render("death", {deathname: deathtype});}
+    else {req.session.destroy(() => {});}
+    // res.render("death", {deathname: deathtype});
 })
 
 app.get("/chests", (req,res) => {
-    res.render("chests");
+    if (req.session && req.session.username) {res.render("chests");}
+    else {req.session.destroy(() => {});}
+    // res.render("chests");
 })
 
 app.get("/accessories", (req,res) => {
-    res.render("accessories");
+    if (req.session && req.session.username) {res.render("accessories");}
+    else {req.session.destroy(() => {});}
+    // res.render("accessories");
 })
 
 app.get("/cities", (req,res) => {
-    res.render("cities");
+    if (req.session && req.session.username) {res.render("cities");}
+    else {req.session.destroy(() => {});}
+    // res.render("cities");
 })
 
 app.get("/winner", (req,res) => {
-    res.render("winner");
+    if (req.session && req.session.username) {res.render("winner");}
+    else {req.session.destroy(() => {});}
+    // res.render("winner");
 })
 
 app.listen(port, () => {
